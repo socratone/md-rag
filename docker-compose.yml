@@ -8,6 +8,7 @@ services:
     container_name: rag-create-collection
     # 호스트의 현재 디렉토리를 컨테이너의 /app 디렉토리에 마운트
     volumes:
+      - ./docs:/app/docs # docs 폴더를 컨테이너 내부의 /app/docs에 마운트
       - ./db:/app/db # db 폴더를 컨테이너 내부의 /app/db에 마운트
     # 컨테이너가 종료되어도 자동으로 다시 시작하지 않음
     restart: "no"

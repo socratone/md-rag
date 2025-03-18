@@ -1,2 +1,5 @@
 /docs/**
+!/docs/.gitkeep
+
 /db/**
+!/db/.gitkeep
