@@ -7,10 +7,10 @@ import chromadb
 def main():
     chroma_client = chromadb.Client()
 
-    # switch `create_collection` to `get_or_create_collection` to avoid creating a new collection every time
+    # `create_collection`을 `get_or_create_collection`으로 변경하여 매번 새 컬렉션을 생성하지 않도록 함
     collection = chroma_client.get_or_create_collection(name="my_collection")
 
-    # switch `add` to `upsert` to avoid adding the same documents every time
+    # `add`를 `upsert`로 변경하여 동일한 문서를 매번 추가하지 않도록 함
     collection.upsert(
         documents=[
             "This is a document about pineapple",
@@ -22,8 +22,8 @@ def main():
     results = collection.query(
         query_texts=[
             "This is a query document about florida"
-        ],  # Chroma will embed this for you
-        n_results=2,  # how many results to return
+        ],  # Chroma가 자동으로 임베딩을 생성함
+        n_results=2,  # 반환할 결과 수
     )
 
     print(results)
