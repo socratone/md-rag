@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import chromadb
+import argparse
 from typing import List, Dict, Any
 
 
@@ -58,14 +59,43 @@ def query_collection(
 
 def main():
     """
-    기본 쿼리를 수행하는 메인 함수
+    CLI에서 쿼리 텍스트를 받아 쿼리를 수행하는 메인 함수
     """
-    # 기본 쿼리 텍스트 정의
-    default_query = ["This is a query document about florida"]
-
+    # 명령줄 인자 파서 생성
+    parser = argparse.ArgumentParser(description="ChromaDB 컬렉션에 쿼리를 수행합니다.")
+    
+    # 쿼리 텍스트 인자 추가
+    parser.add_argument(
+        "--query", 
+        type=str, 
+        default="This is a query document about florida",
+        help="검색할 쿼리 텍스트 (기본값: 'This is a query document about florida')"
+    )
+    
+    # 컬렉션 이름 인자 추가
+    parser.add_argument(
+        "--collection", 
+        type=str, 
+        default="my_collection",
+        help="쿼리할 컬렉션 이름 (기본값: 'my_collection')"
+    )
+    
+    # 결과 수 인자 추가
+    parser.add_argument(
+        "--n_results", 
+        type=int, 
+        default=2,
+        help="반환할 결과 수 (기본값: 2)"
+    )
+    
+    # 인자 파싱
+    args = parser.parse_args()
+    
     # 쿼리 수행
     results = query_collection(
-        collection_name="my_collection", query_texts=default_query, n_results=2
+        collection_name=args.collection, 
+        query_texts=[args.query], 
+        n_results=args.n_results
     )
 
     # 결과 출력

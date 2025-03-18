@@ -28,6 +28,23 @@ docker-compose run --rm create
 docker-compose run --rm query
 ```
 
+#### 사용자 정의 쿼리 사용하기
+
+CLI에서 직접 쿼리 텍스트를 지정하여 검색할 수 있습니다:
+
+```bash
+docker-compose run --rm query python query_collection.py --query "여기에 검색할 쿼리 텍스트 입력"
+```
+
+추가 옵션:
+- `--collection`: 쿼리할 컬렉션 이름 지정 (기본값: "my_collection")
+- `--n_results`: 반환할 결과 수 지정 (기본값: 2)
+
+예시:
+```bash
+docker-compose run --rm query python query_collection.py --query "florida의 날씨는 어떤가요?" --n_results 3
+```
+
 ## 기술 스택
 
 - Python 3.9

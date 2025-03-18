@@ -25,4 +25,6 @@ services:
     # 컨테이너가 종료되어도 자동으로 다시 시작하지 않음
     restart: "no"
     # 컨테이너 시작 시 실행할 명령어 설정
+    # 명령어 뒤에 인자를 추가하여 쿼리 텍스트를 전달할 수 있음
+    # 예: docker-compose run --rm query python query_collection.py --query "내 쿼리 텍스트"
     command: python query_collection.py
